@@ -94,12 +94,29 @@ header h1 {
   font-size: 0.8em;
 }
 
+/* Input global style */
 .progress-bar__progress {
+  -webkit-appearance: none;
   height: 25%;
   width: 100%;
   margin: 0 1rem;
   background-color: #b83f87;
   border-radius: 4px;
+  border-radius: 4px;
+  background-image: linear-gradient(#f1e7ed, #f1e7ed);
+  background-size: 10% 100%;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+/* Input Thumb */
+.progress-bar__progress::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+.progress-bar__progress::-moz-range-thumb {
+  border:none;
+  background: none;
 }
 
 .controller {
