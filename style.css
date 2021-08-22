@@ -1,0 +1,128 @@
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #95c1c4;
+  color: #f1e7ed;
+
+  /* font-family: 'Kalam', cursive; */
+  font-family: 'Signika', sans-serif;
+}
+
+.container {
+  width: 400px;
+  height: 600px;
+  padding: 20px;
+  background-color: #f15bb5;
+  border-radius: 10px;
+  box-shadow: #729092 0 0 10px;
+  display: grid;
+  grid:
+    'header' 8%
+    'current' 46%
+    'progress' 5%
+    'controller' 20%
+    'option' 15%;
+  gap: calc(6% / 4);
+}
+
+header {
+  grid-area: header;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .fas {
+  padding: 3px;
+  border-radius: 50%;
+  background-color: #f1e7ed;
+  font-size: 1.5rem;
+  color: #f15bb5;
+}
+
+header .fas.fa-music {
+  padding: 7px;
+  border-radius: 20%;
+}
+
+header .fas.fa-user-circle:hover {
+  box-shadow: #ffffff 0 0 10px;
+}
+
+header h1 {
+  font-size: 1.3rem;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.current-media {
+  grid-area: current;
+  /* width: 220px; */
+  height: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.current-media__img {
+  width: 200px;
+  height: 200px;
+  background-color: #fcc4e5;
+  box-shadow: rgba(50, 50, 50, 0.5) 0 0 5px;
+}
+
+.progress-bar {
+  grid-area: progress;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 300;
+  font-size: 0.8em;
+}
+
+.progress-bar__progress {
+  height: 25%;
+  width: 100%;
+  margin: 0 1rem;
+  background-color: #b83f87;
+  border-radius: 4px;
+}
+
+.controller {
+  grid-area: controller;
+  padding: 0 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 2.5rem;
+}
+
+.controller .fas {
+  display: block;
+}
+
+.controller .fas:hover {
+  color: #b83f87;
+}
+
+.controller .fas.play-pause-btn {
+  font-size: 5rem;
+}
+
+.option-btn {
+  grid-area: option;
+}
