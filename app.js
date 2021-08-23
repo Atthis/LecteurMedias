@@ -55,7 +55,7 @@ function pauseTrack() {
 
 function timeUpdate (){
   let timePosition = 0;// RAZ de la valeur du temps de la piste en cours
-  if(!isNaN(currentTrack)){
+  if(!isNaN(currentTrack.duration)){
      timePosition = (currentTrack.currentTime*100)/currentTrack.duration;
     progressBar.value = timePosition;
   
