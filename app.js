@@ -9,6 +9,7 @@ const playBtn = document.querySelector('.play-pause-btn');
 const prevBtn = document.querySelector('.fa-step-backward');
 const nextBtn = document.querySelector('.fa-step-forward');
 const repeatBtn = document.querySelector('.fa-redo');
+const repeatTxt = document.querySelector('.repeat-text');
 
 // Creation de l'element audio
 const currentTrack = document.createElement('audio');
@@ -155,24 +156,22 @@ function prevTrack() {
   playTrack();
 }
 
+// Repetition des pistes
 function repeatTrack() {
   if (repeatOn >= 2) {
     repeatOn = 0;
     repeatBtn.style.color = '#fff';
-    repeatBtn.innerText = '';
-    console.log(repeatOn);
+    repeatTxt.innerText = '';
   } else {
     repeatOn++;
 
     if (repeatOn === 1) {
       repeatBtn.style.color = '#95c1c4';
-      repeatBtn.innerText = ' all';
-      console.log(repeatOn);
+      repeatTxt.innerText = ' all';
     }
     if (repeatOn === 2) {
       repeatBtn.style.color = '#95c1c4';
-      repeatBtn.innerText = ' 1';
-      console.log(repeatOn);
+      repeatTxt.innerText = ' 1';
     }
   }
 }
