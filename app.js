@@ -6,7 +6,7 @@ const playBtn = document.querySelector('.play-pause-btn');
 const prevBtn = document.querySelector('.fa-step-backward');
 const nextBtn = document.querySelector('.fa-step-forward');
 const progressBar = document.querySelector('.progress-bar__progress');
-const currentTime = document.querySelector('progress-bar__current-time');
+const currTime = document.querySelector('.progress-bar__current-time');
 const totalTime = document.querySelector('.progress-bar__total-time');
 
 // Creation de l'element audio
@@ -60,7 +60,7 @@ function timeUpdate (){
     progressBar.value = timePosition;
   
   // MAJ des infos duree
-  currentTime.innerText = toMinutes(currentTrack.currentTime);
+  currTime.innerText = toMinutes(currentTrack.currentTime);
   totalTime.innerText = toMinutes(currentTrack.duration);
   
      // MAJ de la barre de progression
