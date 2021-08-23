@@ -65,6 +65,7 @@ function timeUpdate (){
   
      // MAJ de la barre de progression
      progressBar.style.backgroundSize = `${timePosition}% 100%`;
+    console.log("fonction OK");
     }
 }
 
