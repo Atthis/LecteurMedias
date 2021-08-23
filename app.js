@@ -6,7 +6,7 @@ const playBtn = document.querySelector('.play-pause-btn');
 const prevBtn = document.querySelector('.fa-step-backward');
 const nextBtn = document.querySelector('.fa-step-forward');
 const progressBar = document.querySelector('.progress-bar__progress');
-const currentTime = dcument.querySelector('progress-bar__current-time');
+const currentTime = document.querySelector('progress-bar__current-time');
 const totalTime = document.querySelector('.progress-bar__total-time');
 
 // Creation de l'element audio
