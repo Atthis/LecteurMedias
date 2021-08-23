@@ -105,7 +105,7 @@ header h1 {
   border-radius: 4px;
   border-radius: 4px;
   background-image: linear-gradient(#f1e7ed, #f1e7ed);
-  background-size: 10% 100%;
+  background-size: 0% 100%;
   background-repeat: no-repeat;
   cursor: pointer;
 }
