@@ -29,6 +29,9 @@ function loadTrack(){
   
   // Update de la barre de temps
   progressTimer = setInterval(timeUpdate, 1000);
+
+  // Lancement de la piste suivante à la fin
+  currentTrack.addEventListener('ended', nextTrack);
 }
 
 function playPauseTrack() {
@@ -41,15 +44,15 @@ function playPauseTrack() {
 
 function playTrack() {
   currentTrack.play();
-  playBtn.classList.toggle('fa-play-circle');
-  playBtn.classList.toggle('fa-pause-circle');
+  playBtn.classList.remove('fa-play-circle');
+  playBtn.classList.add('fa-pause-circle');
   playing = true;
 }
 
 function pauseTrack() {
   currentTrack.pause();
-  playBtn.classList.toggle('fa-play-circle');
-  playBtn.classList.toggle('fa-pause-circle');
+  playBtn.classList.add('fa-play-circle');
+  playBtn.classList.remove('fa-pause-circle');
   playing = false;
 }
 
@@ -65,10 +68,10 @@ function timeUpdate (){
   
      // MAJ de la barre de progression
      progressBar.style.backgroundSize = `${timePosition}% 100%`;
-    console.log("fonction OK");
-    }
+  }
 }
 
+// convertir le temps de seconde à minutes:secondes
 function toMinutes(time){
  let minutes = Math.floor(time/60);
   let seconds = Math.floor(time - (minutes*60));
@@ -79,7 +82,50 @@ function toMinutes(time){
   return `${minutes}:${seconds}`;
 }
 
+// fonction pour selection du temps de la piste par l'utilisateur
+function changeTime(){
+  // recuperation du clic de l'utilisateur
+  let userTime = currentTrack.duration * progressBar.value /100;
+  
+  // Definition de la durée en cours
+  currentTrack.currentTime = userTime;
+}
+
+
+// Piste suivante et precedente
+function nextTrack(){
+  // Controle si arrive en fin de liste de lecture
+  if(trackIndex < songList.length -1){
+    trackIndex += 1;
+  } else { trackIndex = 0;}
+
+  // chargement de la nouvelle piste
+  loadTrack(trackIndex);
+
+  // lecture de la piste
+  playTrack();
+}
+
+function prevTrack() {
+  // Controle si arrive en fin de liste de lecture
+  if(trackIndex > 0){
+    trackIndex -= 1;
+  } else { trackIndex = songList.length -1;}
+
+  // chargement de la nouvelle piste
+  loadTrack(trackIndex);
+
+  // lecture de la piste
+  playTrack();
+}
+
+
 window.addEventListener('load', loadTrack);
 playBtn.addEventListener('click', playPauseTrack);
+progressBar.addEventListener('change', changeTime);
+
+prevBtn.addEventListener('click', prevTrack);
+nextBtn.addEventListener('click', prevTrack);
+
 // Random function for shuffle :
 // return (trckImg.src = songList[Math.floor(Math.random() * songList.length)].trackImg);

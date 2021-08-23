@@ -85,6 +85,7 @@ header h1 {
   box-shadow: rgba(50, 50, 50, 0.5) 0 0 5px;
 }
 
+/*-- Progress Bar Area --*/
 .progress-bar {
   grid-area: progress;
   display: flex;
@@ -115,8 +116,26 @@ header h1 {
 }
 
 .progress-bar__progress::-moz-range-thumb {
-  border:none;
+  border: none;
   background: none;
+}
+
+.progress-bar__progress:hover::-webkit-slider-thumb {
+  border: 1px solid #fff;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  background: #f15bb5;
+  cursor: pointer;
+}
+
+.progress-bar__progress:hover::-moz-range-thumb {
+  border: 1px solid #fff;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  background: #f15bb5;
+  cursor: pointer;
 }
 
 .controller {
