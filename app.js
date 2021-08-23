@@ -6,25 +6,30 @@ const playBtn = document.querySelector('.play-pause-btn');
 const prevBtn = document.querySelector('.fa-step-backward');
 const nextBtn = document.querySelector('.fa-step-forward');
 const progressBar = document.querySelector('.progress-bar__progress');
+const currentTime = dcument.querySelector('progress-bar__current-time');
+const totalTime = document.querySelector('.progress-bar__total-time');
 
+// Creation de l'element audio
 const currentTrack = document.createElement('audio');
 
 let trackIndex = 0;
 let playing = false; // pour affichage picto lecture/pause
 let progressTimer; // timer pour MAJ barre progression
 
-window.addEventListener('load', () => {
+// Chargement de la piste au chargement de la page + MAJ des infos
+function loadTrack(){
+  // RAZ de l'intervale pour l'update de la barre de temps
+  clearInterval(progressTimer);
+  
   currentTrack.src = songList[trackIndex].trackSource;
   trckImg.src = songList[trackIndex].trackImg;
   trckName.innerText = `${songList[trackIndex].trackName} 
   ${songList[trackIndex].trackArtist}`;
 
-  clearInterval(progressTimer);
-
+  
+  // Update de la barre de temps
   progressTimer = setInterval(timeUpdate, 1000);
-});
-
-playBtn.addEventListener('click', playPauseTrack);
+}
 
 function playPauseTrack() {
   if (!playing) {
@@ -49,8 +54,31 @@ function pauseTrack() {
 }
 
 function timeUpdate (){
-    // temps en cours * 100 / temps total
-    progressBar.style.backgroundSize = `${(currentTrack.currentTime*100)/currentTrack.duration}% 100%`;
+  let timePosition = 0;// RAZ de la valeur du temps de la piste en cours
+  if(!isNaN(currentTrack){
+     timePosition = (currentTrack.currentTime*100)/currentTrack.duration;
+    progressBar.value = timePosition;
+  
+  // MAJ des infos duree
+  currentTime.innerText = toMinutes(currentTrack.currentTime);
+  totalTime.innerText = toMinutes(currentTrack.duration);
+  
+     // MAJ de la barre de progression
+     progressBar.style.backgroundSize = `${timePosition}% 100%`;
+    }
 }
+
+function toMinutes(time){
+ let minutes = Math.floor(time/60);
+  let seconds = Math.floor(time - (minutes*60));
+  
+  if (minutes<10){minutes = `0${minutes}`;}
+  if (seconds<10){seconds = `0${seconds}`;}
+  
+  return `${minutes}:${seconds}`;
+}
+
+window.addEventListener('load', loadTrack);
+playBtn.addEventListener('click', playPauseTrack);
 // Random function for shuffle :
 // return (trckImg.src = songList[Math.floor(Math.random() * songList.length)].trackImg);
