@@ -10,6 +10,7 @@ const prevBtn = document.querySelector('.fa-step-backward');
 const nextBtn = document.querySelector('.fa-step-forward');
 const repeatBtn = document.querySelector('.fa-redo');
 const repeatTxt = document.querySelector('.repeat-text');
+const rdmBtn = document.querySelector('.fa-random');
 
 // Creation de l'element audio
 const currentTrack = document.createElement('audio');
@@ -17,7 +18,10 @@ const currentTrack = document.createElement('audio');
 let trackIndex = 0;
 let progressTimer; // timer pour MAJ barre progression
 let playing = false; // pour affichage picto lecture/pause
-let repeatOn = 0;
+let repeatOn = 0; // compteur repeat
+let noPlaylistRepeat = true; // variable activant la répétition de playlist ou non
+let shuffle = 0; // compteur shuffle
+let shuffleOn = false; // toggle shuffle
 
 // Chargement de la piste au chargement de la page + MAJ des infos
 function loadTrack() {
@@ -97,50 +101,7 @@ function changeTime() {
   currentTrack.currentTime = userTime;
 }
 
-// Piste suivante et precedente
-function nextTrack() {
-  // variable activant la répétition de playlist ou non
-  let noPlaylistRepeat = true;
-
-  switch (repeatOn) {
-    case 0: // Si aucun repeat activé
-      // Controle si arrive en fin de liste de lecture
-      if (trackIndex < songList.length - 1) {
-        trackIndex++;
-      } else {
-        trackIndex = 0;
-        noPlaylistRepeat = true;
-      }
-      break;
-    case 1:
-      if (trackIndex === songList.length - 1) {
-        trackIndex = 0;
-        noPlaylistRepeat = false;
-      } else {
-        trackIndex++;
-      }
-      break;
-    case 2:
-      noPlaylistRepeat = true;
-      break;
-    default:
-      console.log('Valeur non-reconnue');
-  }
-
-  // chargement de la nouvelle piste
-  loadTrack(trackIndex);
-
-  if (noPlaylistRepeat && trackIndex === 0 && repeatOn !== 2) {
-    // Derniere piste atteinte et pas de repetition de playlist
-    currentTrack.pause();
-    currentTrack.currentTime = 0;
-  } else {
-    // lecture de la piste
-    playTrack();
-    console.log(repeatOn);
-  }
-}
-
+// Piste precedente et suivante
 function prevTrack() {
   // Controle si arrive en fin de liste de lecture
   if (trackIndex > 0) {
@@ -156,34 +117,130 @@ function prevTrack() {
   playTrack();
 }
 
+function nextTrack() {
+  
+  repeatTrack()
+
+  // chargement de la nouvelle piste
+  loadTrack(trackIndex);
+
+  if (noPlaylistRepeat && trackIndex === 0 && repeatOn !== 2) {
+    // Derniere piste atteinte et pas de repetition de playlist
+    currentTrack.pause();
+    currentTrack.currentTime = 0;
+  } else {
+    // lecture de la piste
+    playTrack();
+    console.log(repeatOn);
+  }
+}
+
 // Repetition des pistes
-function repeatTrack() {
+function repeatTrackAction() { // Gestion du bouton de repeat
   if (repeatOn >= 2) {
     repeatOn = 0;
+    noPlaylistRepeat = true;
     repeatBtn.style.color = '#fff';
     repeatTxt.innerText = '';
   } else {
     repeatOn++;
 
     if (repeatOn === 1) {
+      noPlaylistRepeat = false;
       repeatBtn.style.color = '#95c1c4';
       repeatTxt.innerText = ' all';
     }
     if (repeatOn === 2) {
+      noPlaylistRepeat = true;
       repeatBtn.style.color = '#95c1c4';
       repeatTxt.innerText = ' 1';
     }
   }
 }
 
+function repeatTrack(){ // generation de l'index de piste selon le type de repetition
+    switch (repeatOn) {
+    case 0: // Si aucun repeat activé
+
+//      Si shuffle on : fonction shuffle
+//     } else {  
+      // Controle si arrive en fin de liste de lecture
+      if (trackIndex < songList.length - 1) {
+        // <-----------
+//         si shuffleOn = true;
+//            shuffleTrack()
+//         sinon : 
+        trackIndex++; 
+      } else {
+        trackIndex = 0;
+//         noPlaylistRepeat = true;
+      }
+      break;
+    case 1:
+        
+//      Si shuffle on : fonction shuffle
+//      } else {        
+      if (trackIndex === songList.length - 1) {
+        trackIndex = 0;
+//         noPlaylistRepeat = false;
+      } else {
+        // <-----------
+//         si shuffleOn = true;
+//            shuffleTrack()
+//         sinon : 
+        trackIndex++; 
+      }
+      break;
+    case 2:
+//       noPlaylistRepeat = true;
+      break;
+    default:
+      console.log('Valeur non-reconnue');
+  }
+  return trackIndex;
+}
+
+// Activation du shuffle
+function shuffleTrackAction() { // Gestion du bouton de shuffle
+ shuffle ++;
+  if(shuffle > 1){
+   shuffle = 0;
+    shuffleOn = false;
+  } else {
+    shuffleOn = true;
+    if(!playing){
+      trackIndex = Math.floor(Math.random() * songList.length);
+      playTrack();
+    }
+  }
+}
+
+function shuffleTrack() {
+  trackIndex = Math.floor(Math.random() * songList.length);
+//   inserer index dans tableau
+//   
+//   si longueur tableau sup ou egale à lg playlist : 
+//      shuffleOn = false;
+//      trackIndex = 0;
+//      return trackIndex;
+//   
+//   tant que trackIndex présent dans le tableau, generer un nouvel index
+//   
+//   return trackIndex;
+//      
+}
+
 window.addEventListener('load', loadTrack);
-playBtn.addEventListener('click', playPauseTrack);
 progressBar.addEventListener('change', changeTime);
 
+// control button events
+playBtn.addEventListener('click', playPauseTrack);
 prevBtn.addEventListener('click', prevTrack);
 nextBtn.addEventListener('click', nextTrack);
 
-repeatBtn.addEventListener('click', repeatTrack);
+// option button events
+repeatBtn.addEventListener('click', repeatTrackAction);
+rdmBtn.addEventListener('click', shuffleTrackAction);
 
 // Random function for shuffle :
 // return (trckImg.src = songList[Math.floor(Math.random() * songList.length)].trackImg);
