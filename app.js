@@ -22,6 +22,7 @@ let repeatOn = 0; // compteur repeat
 let noPlaylistRepeat = true; // variable activant la répétition de playlist ou non
 let shuffle = 0; // compteur shuffle
 let shuffleOn = false; // toggle shuffle
+let shuffleArray = []; // tableau pour stocker les indexs de piste an shuffle
 
 // Chargement de la piste au chargement de la page + MAJ des infos
 function loadTrack() {
@@ -180,7 +181,7 @@ function repeatTrack(){ // generation de l'index de piste selon le type de repet
         
 //      Si shuffle on : fonction shuffle
 //      } else {        
-      if (trackIndex === songList.length - 1) {
+      if (trackIndex === songList.length - 1 && !shuffleOn) {
         trackIndex = 0;
 //         noPlaylistRepeat = false;
       } else {
@@ -218,16 +219,27 @@ function shuffleTrackAction() { // Gestion du bouton de shuffle
 function shuffleTrack() {
   trackIndex = Math.floor(Math.random() * songList.length);
 //   inserer index dans tableau
-//   
-//   si longueur tableau sup ou egale à lg playlist : 
-//      shuffleOn = false;
-//      trackIndex = 0;
-//      return trackIndex;
-//   
+  shuffleArray.push(trackIndex);
+  
+//   si longueur tableau sup ou egale à lg playlist, arrêter le shuffle : 
+  if(shuffleArray.length >= songList.length){
+//     si repeat all activé :
+    if(reapeatOn !== 1){
+        shuffleOn = false;
+        trackIndex = 0;
+       return trackIndex;
+    } else {
+      shuffleArray= [];
+    }
+  }
+  
 //   tant que trackIndex présent dans le tableau, generer un nouvel index
-//   
-//   return trackIndex;
-//      
+  while(shuffleArray.includes(trackIndex)){
+    trackIndex = Math.floor(Math.random() * songList.length);
+  }
+  
+  return trackIndex;
+     
 }
 
 window.addEventListener('load', loadTrack);
