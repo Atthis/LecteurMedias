@@ -170,6 +170,7 @@ font-size: 2rem;
 .option-btn .fas{
   width: 20%;
   text-align: center;
+  color: #b83f87;
 }
 
 .option-btn .fa-redo{
@@ -185,7 +186,7 @@ font-size: 2rem;
 }
 
 .option-btn .fas:hover {
-  color: #b83f87 !important;
+  color: #fff !important;
   cursor: pointer;
 }
 
