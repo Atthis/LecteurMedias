@@ -18,9 +18,19 @@ body {
   font-family: 'Signika', sans-serif;
 }
 
-.container {
-  width: 400px;
+main.global-container {
   height: 600px;
+  background-color: #f15bb5;
+  border-radius: 10px;
+  box-shadow: #729092 0 0 10px;
+  display: grid;
+  grid: 'player playlist' 100%;
+}
+
+.player-container {
+  grid-area: player;
+  width: 400px;
+  height: 100%;
   padding: 20px;
   background-color: #f15bb5;
   border-radius: 10px;
@@ -153,6 +163,7 @@ header h1 {
 
 .controller .fas:hover {
   color: #b83f87;
+  cursor: pointer;
 }
 
 .controller .fas.play-pause-btn {
@@ -163,21 +174,21 @@ header h1 {
   grid-area: option;
   display: flex;
   justify-content: space-evenly;
-align-items: center;
-font-size: 2rem;
+  align-items: center;
+  font-size: 2rem;
 }
 
-.option-btn .fas{
+.option-btn .fas {
   width: 20%;
   text-align: center;
   color: #b83f87;
 }
 
-.option-btn .fa-redo{
+.option-btn .fa-redo {
   position: relative;
 }
 
-.option-btn .repeat-text{
+.option-btn .repeat-text {
   position: absolute;
   bottom: 0;
   font-family: 'Signika', sans-serif;
@@ -190,7 +201,7 @@ font-size: 2rem;
   cursor: pointer;
 }
 
-.option-btn .playlist-icon{
+.option-btn .playlist-icon {
   width: 20%;
   display: flex;
   flex-direction: column;
@@ -198,18 +209,73 @@ font-size: 2rem;
 }
 
 .option-btn .playlist-icon:hover {
-  
-cursor: pointer;
+  cursor: pointer;
 }
 
-.option-btn .playlist-icon:hover > .bar{
+.option-btn .playlist-icon:hover > .bar {
   background-color: #b83f87;
 }
 
-.option-btn .bar{
+.option-btn .bar {
   width: 60%;
   height: 6px;
   margin: 3px 0;
   border-radius: 3px;
   background-color: #f1e7ed;
+}
+
+.playlist-container {
+  grid-area: playlist;
+  width: 0;
+  font-size: 0.9rem;
+  overflow: hidden;
+  transition: width 0.5s ease;
+}
+
+.playlist-container table {
+  width: 100%;
+}
+
+.playlist-container thead {
+  background-color: #fcc4e5;
+  font-size: 1.2em;
+  font-weight: 300;
+}
+
+.playlist-container tr {
+  color: #b83f87;
+}
+.playlist-container tr:hover {
+  color: #fff;
+  cursor: pointer;
+}
+
+.playlist-container td {
+  padding: 0.5em;
+  padding-left: 0.5em;
+}
+
+.playlist-container .song-nbr {
+  width: 10%;
+  padding-right: 0.2em;
+  text-align: right;
+}
+
+.playlist-container .song-artist {
+  font-style: italic;
+  font-size: 0.9em;
+}
+
+.playlist-container .song-row:nth-of-type(n) {
+  background-color: #f15bb5;
+}
+
+.playlist-container .song-row:nth-of-type(2n) {
+  background-color: #fcc4e5;
+}
+
+.show-playlist {
+  width: 500px;
+  padding: 1rem;
+  padding-left: 1.5rem;
 }

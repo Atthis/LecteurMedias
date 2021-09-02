@@ -1,5 +1,6 @@
 import { songList } from './musiclist.mjs';
 
+// selection des elements du DOM
 const trckImg = document.querySelector('.current-media__img');
 const trckName = document.querySelector('.current-media__title');
 const progressBar = document.querySelector('.progress-bar__progress');
@@ -11,10 +12,13 @@ const nextBtn = document.querySelector('.fa-step-forward');
 const repeatBtn = document.querySelector('.fa-redo');
 const repeatTxt = document.querySelector('.repeat-text');
 const rdmBtn = document.querySelector('.fa-random');
+const playlistBtn = document.querySelector('.playlist-icon');
+const playlistSection = document.querySelector('.playlist-container');
 
 // Creation de l'element audio
 const currentTrack = document.createElement('audio');
 
+// Variables des fonctions
 let trackIndex = 0;
 let progressTimer; // timer pour MAJ barre progression
 let playing = false; // pour affichage picto lecture/pause
@@ -24,7 +28,7 @@ let shuffle = 0; // compteur shuffle
 let shuffleOn = false; // toggle shuffle
 let shuffleArray = []; // tableau pour stocker les indexs de piste an shuffle
 
-// Chargement de la piste au chargement de la page + MAJ des infos
+// Fonction principale - Chargement de la piste au chargement de la page + MAJ des infos
 function loadTrack() {
   // RAZ de l'intervale pour l'update de la barre de temps
   clearInterval(progressTimer);
@@ -41,6 +45,7 @@ function loadTrack() {
   currentTrack.addEventListener('ended', nextTrack);
 }
 
+// Play et pause de la piste
 function playPauseTrack() {
   if (!playing) {
     playTrack();
@@ -63,6 +68,7 @@ function pauseTrack() {
   playing = false;
 }
 
+// Fonctions barre de temps
 function timeUpdate() {
   let timePosition = 0; // RAZ de la valeur du temps de la piste en cours
   if (!isNaN(currentTrack.duration)) {
@@ -120,6 +126,8 @@ function prevTrack() {
 
 function nextTrack() {
   repeatTrack();
+
+  console.log(trackIndex);
 
   // chargement de la nouvelle piste
   loadTrack(trackIndex);
@@ -218,7 +226,7 @@ function shuffleTrackAction() {
 }
 
 function shuffleTrack() {
-  let currentTrackIndex; // Stock l'index en cours pour en pas le lire à nouveau à la suite
+  let currentTrackIndex; // Stock l'index en cours pour ne pas le lire à nouveau à la suite
 
   // Controle si toutes les pistes ont été jouées
   if (shuffleArray.length >= songList.length && repeatOn !== 1) {
@@ -230,13 +238,16 @@ function shuffleTrack() {
   if (shuffleArray.length >= songList.length && repeatOn === 1) {
     //     si repeat all activé, vider le tableau :
     shuffleArray = [];
-    currentTrackIndex = trackIndex; 
+    currentTrackIndex = trackIndex;
   }
 
   trackIndex = Math.floor(Math.random() * songList.length);
 
   //   tant que trackIndex présent dans le tableau, generer un nouvel index
-  while (shuffleArray.includes(trackIndex) || trackIndex === currentTrackIndex) {
+  while (
+    shuffleArray.includes(trackIndex) ||
+    trackIndex === currentTrackIndex
+  ) {
     trackIndex = Math.floor(Math.random() * songList.length);
   }
   //   inserer index dans tableau
@@ -245,8 +256,43 @@ function shuffleTrack() {
   return trackIndex;
 }
 
+// Génération de la playlist
+function playlistTableGen() {
+  const playlistTable = document.createElement('table');
+  const playlistTableBody = document.createElement('tbody');
 
-window.addEventListener('load', loadTrack);
+  playlistTable.innerHTML += `<thead><tr><th colspan="3">${songList[0].trackAlbum}</th></tr></thead>`;
+
+  for (const song of songList) {
+    const newRow = `<tr class="song-row"><td class="song-nbr">${
+      songList.indexOf(song) + 1
+    }</td><td class="song-title">${
+      song.trackName
+    }</td><td class="song-artist">${song.trackArtist}</td></tr>`;
+
+    playlistTableBody.innerHTML += newRow; // Ajout de la piste dans le body du tableau
+  }
+
+  playlistTable.appendChild(playlistTableBody); // Ajout du tbody au tableau
+
+  playlistSection.appendChild(playlistTable); // Ajout du tableau dans la section
+}
+
+window.addEventListener('load', () => {
+  loadTrack();
+  playlistTableGen();
+
+  const songRow = document.querySelectorAll('.song-row');
+
+  for (const song of songRow) {
+    song.addEventListener('click', () => {
+      trackIndex = song.rowIndex - 1;
+      loadTrack();
+      playTrack();
+    });
+  }
+});
+
 progressBar.addEventListener('change', changeTime);
 
 // control button events
@@ -257,3 +303,8 @@ nextBtn.addEventListener('click', nextTrack);
 // option button events
 repeatBtn.addEventListener('click', repeatTrackAction);
 rdmBtn.addEventListener('click', shuffleTrackAction);
+
+// playlist
+playlistBtn.addEventListener('click', () => {
+  playlistSection.classList.toggle('show-playlist');
+});

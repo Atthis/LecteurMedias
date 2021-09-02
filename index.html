@@ -24,41 +24,46 @@
     ></script>
   </head>
   <body>
-    <div class="container">
-      <header>
-        <i class="fas fa-music"></i>
-        <h1 class="title">Lecteur musical</h1>
-        <i class="fas fa-user-circle"></i>
-      </header>
-      <section class="current-media">
-        <img src="" alt="" class="current-media__img" />
-        <p class="current-media__title"></p>
-      </section>
-      <section class="progress-bar">
-        <p class="progress-bar__current-time">00:00</p>
-        <input
-          type="range"
-          class="progress-bar__progress"
-          min="0"
-          max="100"
-          value="0"
-        />
-        <p class="progress-bar__total-time">00:00</p>
-      </section>
-      <section class="controller">
-        <i class="fas fa-step-backward"></i>
-        <i class="fas fa-play-circle play-pause-btn"></i>
-        <i class="fas fa-step-forward"></i>
-      </section>
-      <section class="option-btn">
-        <i class="fas fa-redo"><span class="repeat-text"></span></i>
-        <i class="fas fa-random"></i>
-        <span class="playlist-icon"
-          ><span class="bar"></span><span class="bar"></span
-          ><span class="bar"></span
-        ></span>
-      </section>
-    </div>
+    <main class="global-container">
+      <div class="player-container">
+        <header>
+          <i class="fas fa-music"></i>
+          <h1 class="title">Lecteur musical</h1>
+          <i class="fas fa-user-circle"></i>
+        </header>
+        <section class="current-media">
+          <img src="" alt="" class="current-media__img" />
+          <p class="current-media__title"></p>
+        </section>
+        <section class="progress-bar">
+          <p class="progress-bar__current-time">00:00</p>
+          <input
+            type="range"
+            class="progress-bar__progress"
+            min="0"
+            max="100"
+            value="0"
+          />
+          <p class="progress-bar__total-time">00:00</p>
+        </section>
+        <section class="controller">
+          <i class="fas fa-step-backward"></i>
+          <i class="fas fa-play-circle play-pause-btn"></i>
+          <i class="fas fa-step-forward"></i>
+        </section>
+        <section class="option-btn">
+          <i class="fas fa-redo"><span class="repeat-text"></span></i>
+          <i class="fas fa-random"></i>
+          <span class="playlist-icon"
+            ><span class="bar"></span><span class="bar"></span
+            ><span class="bar"></span
+          ></span>
+        </section>
+      </div>
+      <div class="playlist-container">
+
+      </div>
+    </main>
     <script src="app.js" type="module"></script>
   </body>
 </html>
