@@ -131,7 +131,7 @@ const trackList = [
     trackName: 'Forces Of Attraction',
     trackArtist: 'Scott Holmes Music',
     trackAlbum: 'Cinematic Background Music',
-    trackSource: 'track/13-Forces-Of-Attraction.mp3',
+    trackSource: 'track/13-Forces-of-Attraction.mp3',
     trackImg:
       'track/Cinematic-background-music.jpg',
   }

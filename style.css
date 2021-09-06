@@ -1,3 +1,4 @@
+/* RESET */
 *,
 ::before,
 ::after {
@@ -6,6 +7,61 @@
   box-sizing: border-box;
 }
 
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+button{
+  border: none;
+  background: none;
+  font-size: inherit;
+  text-align: center;
+  width: auto;
+  padding: 0.1rem;
+}
+
+
+/* Main style */
 body {
   height: 100vh;
   display: flex;
@@ -13,8 +69,6 @@ body {
   align-items: center;
   background-color: #95c1c4;
   color: #f1e7ed;
-
-  /* font-family: 'Kalam', cursive; */
   font-family: 'Signika', sans-serif;
 }
 
@@ -75,6 +129,7 @@ header h1 {
   text-transform: uppercase;
 }
 
+/* Current media infos */
 .current-media {
   grid-area: current;
   /* width: 220px; */
@@ -95,7 +150,7 @@ header h1 {
   box-shadow: rgba(50, 50, 50, 0.5) 0 0 5px;
 }
 
-/*-- Progress Bar Area --*/
+/* Progress Bar Area */
 .progress-bar {
   grid-area: progress;
   display: flex;
@@ -105,7 +160,7 @@ header h1 {
   font-size: 0.8em;
 }
 
-/* Input global style */
+/* -> Input global style */
 .progress-bar__progress {
   -webkit-appearance: none;
   height: 25%;
@@ -120,7 +175,7 @@ header h1 {
   cursor: pointer;
 }
 
-/* Input Thumb */
+/* -> Input Thumb */
 .progress-bar__progress::-webkit-slider-thumb {
   -webkit-appearance: none;
 }
@@ -148,6 +203,7 @@ header h1 {
   cursor: pointer;
 }
 
+/* Controller button */
 .controller {
   grid-area: controller;
   padding: 0 5%;
@@ -159,6 +215,7 @@ header h1 {
 
 .controller .fas {
   display: block;
+  color: #fff;
 }
 
 .controller .fas:hover {
@@ -170,16 +227,21 @@ header h1 {
   font-size: 5rem;
 }
 
+/*-- Option button --*/
 .option-btn {
   grid-area: option;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
   font-size: 2rem;
+  position: relative;
+}
+
+.option-btn button{
+  width: 20%;
 }
 
 .option-btn .fas {
-  width: 20%;
   text-align: center;
   color: #b83f87;
 }
@@ -202,7 +264,6 @@ header h1 {
 }
 
 .option-btn .playlist-icon {
-  width: 20%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -224,12 +285,15 @@ header h1 {
   background-color: #f1e7ed;
 }
 
+/*-- Playlist --*/
 .playlist-container {
   grid-area: playlist;
   width: 0;
   font-size: 0.9rem;
   overflow: hidden;
   transition: width 0.5s ease;
+  display: flex;
+  align-items: center;
 }
 
 .playlist-container table {
@@ -237,17 +301,32 @@ header h1 {
 }
 
 .playlist-container thead {
-  background-color: #fcc4e5;
-  font-size: 1.2em;
+  background-color: #b83f87;
+  font-size: 1.8em;
   font-weight: 300;
 }
 
-.playlist-container tr {
+.playlist-container th{
+  padding: 0.2em;;
+}
+
+.playlist-container .song-row {
   color: #b83f87;
 }
-.playlist-container tr:hover {
-  color: #fff;
+
+.playlist-container .song-row {
+  background-color: #f15bb5;
+}
+
+.playlist-container .song-row:hover, 
+.playlist-container .song-row:nth-of-type(2n):hover {
+  color:#fff;
+  background-color: #b83f87;
   cursor: pointer;
+}
+
+.playlist-container .song-row:nth-of-type(2n) {
+  background-color: #fcc4e5;
 }
 
 .playlist-container td {
@@ -266,13 +345,6 @@ header h1 {
   font-size: 0.9em;
 }
 
-.playlist-container .song-row:nth-of-type(n) {
-  background-color: #f15bb5;
-}
-
-.playlist-container .song-row:nth-of-type(2n) {
-  background-color: #fcc4e5;
-}
 
 .show-playlist {
   width: 500px;

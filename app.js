@@ -278,6 +278,7 @@ function playlistTableGen() {
   playlistSection.appendChild(playlistTable); // Ajout du tableau dans la section
 }
 
+// Lancement de l'app au chargement de la page
 window.addEventListener('load', () => {
   loadTrack();
   playlistTableGen();
@@ -304,7 +305,7 @@ nextBtn.addEventListener('click', nextTrack);
 repeatBtn.addEventListener('click', repeatTrackAction);
 rdmBtn.addEventListener('click', shuffleTrackAction);
 
-// playlist
+// affichage playlist
 playlistBtn.addEventListener('click', () => {
   playlistSection.classList.toggle('show-playlist');
 });
