@@ -288,6 +288,7 @@ window.addEventListener('load', () => {
   for (const song of songRow) {
     song.addEventListener('click', () => {
       trackIndex = song.rowIndex - 1;
+      console.log(song.rowIndex, trackIndex);
       loadTrack();
       playTrack();
     });

@@ -36,105 +36,92 @@ const trackList = [
     trackArtist: 'Scott Holmes Music',
     trackAlbum: 'Cinematic Background Music',
     trackSource: 'track/01-Epic-Cinematic.mp3',
-    trackImg:
-      'track/Cinematic-background-music.jpg',
+    trackImg: 'track/Cinematic-background-music.jpg',
   },
   {
     trackName: 'Hunted',
     trackArtist: 'Scott Holmes Music',
     trackAlbum: 'Cinematic Background Music',
     trackSource: 'track/02-Hunted.mp3',
-    trackImg:
-      'track/Cinematic-background-music.jpg',
+    trackImg: 'track/Cinematic-background-music.jpg',
   },
   {
     trackName: 'Epic Trailer',
     trackArtist: 'Scott Holmes Music',
     trackAlbum: 'Cinematic Background Music',
     trackSource: 'track/03-Epic-Trailer.mp3',
-    trackImg:
-      'track/Cinematic-background-music.jpg',
+    trackImg: 'track/Cinematic-background-music.jpg',
   },
   {
     trackName: 'Together We Stand',
     trackArtist: 'Scott Holmes Music',
     trackAlbum: 'Cinematic Background Music',
     trackSource: 'track/04-Together-We-Stand.mp3',
-    trackImg:
-      'track/Cinematic-background-music.jpg',
+    trackImg: 'track/Cinematic-background-music.jpg',
   },
   {
     trackName: 'Humanity',
     trackArtist: 'Scott Holmes Music',
     trackAlbum: 'Cinematic Background Music',
     trackSource: 'track/05-Humanity.mp3',
-    trackImg:
-      'track/Cinematic-background-music.jpg',
+    trackImg: 'track/Cinematic-background-music.jpg',
   },
   {
     trackName: 'Cinematic Trailer',
     trackArtist: 'Scott Holmes Music',
     trackAlbum: 'Cinematic Background Music',
     trackSource: 'track/06-Cinematic-Trailer.mp3',
-    trackImg:
-      'track/Cinematic-background-music.jpg',
+    trackImg: 'track/Cinematic-background-music.jpg',
   },
   {
     trackName: 'Conclusion',
     trackArtist: 'Scott Holmes Music',
     trackAlbum: 'Cinematic Background Music',
     trackSource: 'track/07-Conclusion.mp3',
-    trackImg:
-      'track/Cinematic-background-music.jpg',
+    trackImg: 'track/Cinematic-background-music.jpg',
   },
   {
     trackName: 'The Edge Of Nowhere',
     trackArtist: 'Scott Holmes Music',
     trackAlbum: 'Cinematic Background Music',
-    trackSource: 'track/08-The-Edge-Of-Nowhere.mp3',
-    trackImg:
-      'track/Cinematic-background-music.jpg',
+    trackSource: 'track/08-The-Edge-of-Nowhere.mp3',
+    trackImg: 'track/Cinematic-background-music.jpg',
   },
   {
     trackName: 'Missing',
     trackArtist: 'Scott Holmes Music',
     trackAlbum: 'Cinematic Background Music',
     trackSource: 'track/09-Missing.mp3',
-    trackImg:
-      'track/Cinematic-background-music.jpg',
+    trackImg: 'track/Cinematic-background-music.jpg',
   },
   {
     trackName: 'Awake',
     trackArtist: 'Scott Holmes Music',
     trackAlbum: 'Cinematic Background Music',
     trackSource: 'track/10-Awake.mp3',
-    trackImg:
-      'track/Cinematic-background-music.jpg',
+    trackImg: 'track/Cinematic-background-music.jpg',
   },
   {
     trackName: 'Discovery',
     trackArtist: 'Scott Holmes Music',
     trackAlbum: 'Cinematic Background Music',
     trackSource: 'track/11-Discovery.mp3',
-    trackImg:
-      'track/Cinematic-background-music.jpg',
+    trackImg: 'track/Cinematic-background-music.jpg',
   },
   {
     trackName: 'Escape',
     trackArtist: 'Scott Holmes Music',
     trackAlbum: 'Cinematic Background Music',
     trackSource: 'track/12-Escape.mp3',
-    trackImg:
-      'track/Cinematic-background-music.jpg',
+    trackImg: 'track/Cinematic-background-music.jpg',
   },
   {
     trackName: 'Forces Of Attraction',
     trackArtist: 'Scott Holmes Music',
     trackAlbum: 'Cinematic Background Music',
     trackSource: 'track/13-Forces-of-Attraction.mp3',
-    trackImg:
-      'track/Cinematic-background-music.jpg',
-  }
+    trackImg: 'track/Cinematic-background-music.jpg',
+  },
   // src : https://www.freemusicarchive.org/music/Scott_Holmes/cinematic-background-music
 ];
 
