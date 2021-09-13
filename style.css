@@ -7,51 +7,132 @@
   box-sizing: border-box;
 }
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 body {
-	line-height: 1;
+  line-height: 1;
 }
-ol, ul {
-	list-style: none;
+ol,
+ul {
+  list-style: none;
 }
-blockquote, q {
-	quotes: none;
+blockquote,
+q {
+  quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
-button{
+button {
   border: none;
   background: none;
   font-size: inherit;
@@ -59,7 +140,6 @@ button{
   width: auto;
   padding: 0.1rem;
 }
-
 
 /* Main style */
 body {
@@ -80,6 +160,8 @@ main.global-container {
   display: grid;
   grid: 'player playlist' 100%;
 }
+
+/* Player section */
 
 .player-container {
   grid-area: player;
@@ -144,8 +226,8 @@ header h1 {
 }
 
 .current-media__img {
-  width: 200px;
-  height: 200px;
+  width: 12.5rem;
+  height: 12.5rem;
   background-color: #fcc4e5;
   box-shadow: rgba(50, 50, 50, 0.5) 0 0 5px;
 }
@@ -237,7 +319,7 @@ header h1 {
   position: relative;
 }
 
-.option-btn button{
+.option-btn button {
   width: 20%;
 }
 
@@ -306,8 +388,8 @@ header h1 {
   font-weight: 300;
 }
 
-.playlist-container th{
-  padding: 0.2em;;
+.playlist-container th {
+  padding: 0.2em;
 }
 
 .playlist-container .song-row {
@@ -318,9 +400,9 @@ header h1 {
   background-color: #f15bb5;
 }
 
-.playlist-container .song-row:hover, 
+.playlist-container .song-row:hover,
 .playlist-container .song-row:nth-of-type(2n):hover {
-  color:#fff;
+  color: #fff;
   background-color: #b83f87;
   cursor: pointer;
 }
@@ -345,9 +427,78 @@ header h1 {
   font-size: 0.9em;
 }
 
-
 .show-playlist {
   width: 500px;
   padding: 1rem;
   padding-left: 1.5rem;
+}
+
+@media screen and (max-width: 920px) {
+  .player-container {
+    width: 350px;
+  }
+
+  .show-playlist {
+    width: 350px;
+  }
+}
+
+@media screen and (max-width: 710px),
+  screen and (max-width: 920px) and (orientation: landscape) {
+  body {
+    height: auto;
+    min-height: 100vh;
+    background-color: #f15bb5;
+  }
+
+  main.global-container {
+    min-height: 100vh;
+    width: 100%;
+    box-shadow: none;
+    grid:
+      'player' 100%
+      'playlist' 100%;
+  }
+
+  .player-container {
+    min-height: 600px;
+    min-width: 60%;
+    margin: 0 auto;
+    box-shadow: none;
+  }
+
+  .playlist-container {
+    height: 0;
+    width: 100%;
+    transition: height 0.5s ease;
+    background-color: #b83f87;
+  }
+
+  .show-playlist {
+    padding: 1.5rem;
+    height: 450px;
+  }
+}
+
+@media screen and (max-width: 920px) and (orientation: landscape) {
+  html {
+    font-size: 14px;
+  }
+
+  main.global-container {
+    min-height: 100vh;
+    height: auto;
+  }
+
+  .player-container {
+    width: 100%;
+    min-height: auto;
+    height: 100vh;
+    padding: inherit 2rem;
+    grid:
+      'header header' 10%
+      'current controller' 70%
+      'progress option' 16%;
+    gap: calc(4% / 3) 5rem;
+  }
 }
