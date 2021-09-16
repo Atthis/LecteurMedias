@@ -7,11 +7,14 @@ const progressBar = document.querySelector('.progress-bar__progress');
 const currTime = document.querySelector('.progress-bar__current-time');
 const totalTime = document.querySelector('.progress-bar__total-time');
 const playBtn = document.querySelector('.play-pause-btn');
-const prevBtn = document.querySelector('.fa-step-backward');
-const nextBtn = document.querySelector('.fa-step-forward');
-const repeatBtn = document.querySelector('.fa-redo');
+const playBtnIcon = document.querySelector('.fa-play-circle');
+const prevBtn = document.querySelector('.previous');
+const nextBtn = document.querySelector('.next');
+const repeatBtn = document.querySelector('.repeat');
+const repeatBtnIcon = document.querySelector('.fa-redo');
 const repeatTxt = document.querySelector('.repeat-text');
-const rdmBtn = document.querySelector('.fa-random');
+const rdmBtn = document.querySelector('.random');
+const rdmBtnIcon = document.querySelector('.fa-random');
 const playlistBtn = document.querySelector('.playlist-icon');
 const playlistSection = document.querySelector('.playlist-container');
 
@@ -56,15 +59,15 @@ function playPauseTrack() {
 
 function playTrack() {
   currentTrack.play();
-  playBtn.classList.remove('fa-play-circle');
-  playBtn.classList.add('fa-pause-circle');
+  playBtnIcon.classList.remove('fa-play-circle');
+  playBtnIcon.classList.add('fa-pause-circle');
   playing = true;
 }
 
 function pauseTrack() {
   currentTrack.pause();
-  playBtn.classList.add('fa-play-circle');
-  playBtn.classList.remove('fa-pause-circle');
+  playBtnIcon.classList.add('fa-play-circle');
+  playBtnIcon.classList.remove('fa-pause-circle');
   playing = false;
 }
 
@@ -127,8 +130,6 @@ function prevTrack() {
 function nextTrack() {
   repeatTrack();
 
-  console.log(trackIndex);
-
   // chargement de la nouvelle piste
   loadTrack(trackIndex);
 
@@ -149,19 +150,19 @@ function repeatTrackAction() {
   if (repeatOn >= 2) {
     repeatOn = 0;
     noPlaylistRepeat = true;
-    repeatBtn.style.color = '#b83f87';
+    repeatBtnIcon.style.color = '#b83f87';
     repeatTxt.innerText = '';
   } else {
     repeatOn++;
 
     if (repeatOn === 1) {
       noPlaylistRepeat = false;
-      repeatBtn.style.color = '#fff';
+      repeatBtnIcon.style.color = '#fff';
       repeatTxt.innerText = ' all';
     }
     if (repeatOn === 2) {
       noPlaylistRepeat = true;
-      repeatBtn.style.color = '#fff';
+      repeatBtnIcon.style.color = '#fff';
       repeatTxt.innerText = ' 1';
     }
   }
@@ -214,10 +215,10 @@ function shuffleTrackAction() {
   if (shuffle > 1) {
     shuffle = 0;
     shuffleOn = false;
-    rdmBtn.style.color = '#b83f87';
+    rdmBtnIcon.style.color = '#b83f87';
   } else {
     shuffleOn = true;
-    rdmBtn.style.color = '#fff';
+    rdmBtnIcon.style.color = '#fff';
     if (!playing) {
       // trackIndex = Math.floor(Math.random() * songList.length);
       nextTrack();
@@ -288,7 +289,6 @@ window.addEventListener('load', () => {
   for (const song of songRow) {
     song.addEventListener('click', () => {
       trackIndex = song.rowIndex - 1;
-      console.log(song.rowIndex, trackIndex);
       loadTrack();
       playTrack();
     });
@@ -310,3 +310,29 @@ rdmBtn.addEventListener('click', shuffleTrackAction);
 playlistBtn.addEventListener('click', () => {
   playlistSection.classList.toggle('show-playlist');
 });
+
+// Désactivation auto du focus des boutons en version mobile (= touch)
+const btns = document.querySelectorAll('button'); // Selection des boutons
+
+console.log(window.innerWidth);
+
+if (
+  window.innerWidth <= 710 ||
+  (window.innerWidth > window.innerHeight && window.innerWidth <= 920)
+) {
+  btns.forEach((btn) => {
+    let removeFocusTimer;
+
+    const removeFocus = () => {
+      console.log('ok');
+
+      document.activeElement.blur();
+
+      clearInterval(removeFocusTimer);
+    };
+
+    btn.addEventListener('focus', (e) => {
+      removeFocusTimer = setInterval(removeFocus, 250);
+    });
+  });
+}

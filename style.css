@@ -132,6 +132,7 @@ table {
   border-spacing: 0;
 }
 
+/* Button style reset */
 button {
   border: none;
   background: none;
@@ -144,6 +145,7 @@ button {
 /* Main style */
 body {
   height: 100vh;
+  min-height: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -305,7 +307,7 @@ header h1 {
   cursor: pointer;
 }
 
-.controller .fas.play-pause-btn {
+.controller .play-pause-btn .fas {
   font-size: 5rem;
 }
 
@@ -449,6 +451,12 @@ header h1 {
     height: auto;
     min-height: 100vh;
     background-color: #f15bb5;
+  }
+
+  button:focus,
+  input:focus {
+    outline: solid #fff 0.5px;
+    border-radius: 0.5rem;
   }
 
   main.global-container {
