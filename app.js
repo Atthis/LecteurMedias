@@ -325,15 +325,14 @@ if (
     // color: #b83f87;
 
     const removeFocus = () => {
-
       btn.style.color = '#b83f87';
-      // btn.style.background = '#000';
+      btn.style.background = '#000';
       console.log('ok');
 
       clearInterval(removeFocusTimer);
     };
 
-    btn.addEventListener('touchstart', (e) => {
+    btn.addEventListener('focus', (e) => {
       removeFocusTimer = setInterval(removeFocus, 250);
     });
   });
