@@ -453,11 +453,11 @@ header h1 {
     background-color: #f15bb5;
   }
 
-  button:focus,
+  /* button:focus,
   input:focus {
     outline: solid #fff 0.5px;
     border-radius: 0.5rem;
-  }
+  } */
 
   main.global-container {
     min-height: 100vh;

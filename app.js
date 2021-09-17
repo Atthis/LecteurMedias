@@ -322,11 +322,13 @@ if (
 ) {
   btns.forEach((btn) => {
     let removeFocusTimer;
+    // color: #b83f87;
 
     const removeFocus = () => {
-      console.log('ok');
 
-      document.activeElement.blur();
+      // btn.style.color = '#b83f87';
+      btn.style.color = '#000';
+      console.log('ok');
 
       clearInterval(removeFocusTimer);
     };
