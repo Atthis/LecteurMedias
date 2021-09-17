@@ -48,21 +48,26 @@
         </section>
         <section class="controller">
           <button class="previous"><i class="fas fa-step-backward"></i></button>
-          <button class="play-pause-btn"><i class="fas fa-play-circle"></i></button>
+          <button class="play-pause-btn">
+            <i class="fas fa-play-circle"></i>
+          </button>
           <button class="next"><i class="fas fa-step-forward"></i></button>
         </section>
         <section class="option-btn">
-          <button class="repeat"><i class="fas fa-redo"><span class="repeat-text"></span></i></button>
+          <button class="repeat">
+            <i class="fas fa-redo"><span class="repeat-text"></span></i>
+          </button>
           <button class="random"><i class="fas fa-random"></i></button>
-          <button class="playlist-icon"
-            ><span class="bar"></span><span class="bar"></span
-            ><span class="bar"></span
-          ></button>
+          <button class="playlist-icon">
+            <span class="bar left-bar"></span>
+            <span class="bar right-bar"></span>
+            <span class="bar"></span>
+            <span class="bar to-hide-bar"></span>
+            <span class="bar to-hide-bar"></span>
+          </button>
         </section>
       </div>
-      <div class="playlist-container">
-
-      </div>
+      <div class="playlist-container" id="playlist"></div>
     </main>
     <script src="app.js" type="module"></script>
   </body>

@@ -351,6 +351,7 @@ header h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
 .option-btn .playlist-icon:hover {
@@ -367,6 +368,22 @@ header h1 {
   margin: 3px 0;
   border-radius: 3px;
   background-color: #f1e7ed;
+  z-index: 10;
+}
+
+.option-btn .bar:nth-of-type(1),
+.option-btn .bar:nth-of-type(2) {
+  width: 55%;
+  position: absolute;
+  z-index: 0;
+  transition: transform 0.1s ease;
+}
+
+.option-btn .bar:nth-of-type(1) {
+  transform-origin: left;
+}
+.option-btn .bar:nth-of-type(2) {
+  transform-origin: right;
 }
 
 /*-- Playlist --*/
@@ -453,12 +470,6 @@ header h1 {
     background-color: #f15bb5;
   }
 
-  /* button:focus,
-  input:focus {
-    outline: solid #fff 0.5px;
-    border-radius: 0.5rem;
-  } */
-
   main.global-container {
     min-height: 100vh;
     width: 100%;
@@ -475,16 +486,39 @@ header h1 {
     box-shadow: none;
   }
 
+  .option-btn .fas:hover {
+    color: #b83f87 !important;
+    cursor: pointer;
+  }
+
+  .active-bar-1 {
+    transform: rotate(60deg) translateY(-30%);
+  }
+
+  .active-bar-2 {
+    transform: rotate(-60deg) translateY(-30%);
+  }
+
+  .hide-bar{
+    opacity: 0;
+  }
+
+  .controller .fas:hover,
+  .option-btn .playlist-icon:hover > .bar {
+    background-color: #fff;
+  }
+
   .playlist-container {
     height: 0;
     width: 100%;
     transition: height 0.5s ease;
     background-color: #b83f87;
   }
-
+  
   .show-playlist {
     padding: 1.5rem;
     height: 450px;
+    transition: none;
   }
 }
 

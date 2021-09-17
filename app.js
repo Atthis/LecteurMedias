@@ -16,6 +16,9 @@ const repeatTxt = document.querySelector('.repeat-text');
 const rdmBtn = document.querySelector('.random');
 const rdmBtnIcon = document.querySelector('.fa-random');
 const playlistBtn = document.querySelector('.playlist-icon');
+const playlistBtnLeft = document.querySelector('.left-bar');
+const playlistBtnRight = document.querySelector('.right-bar');
+const playlistBtnHide = document.querySelectorAll('.to-hide-bar');
 const playlistSection = document.querySelector('.playlist-container');
 
 // Creation de l'element audio
@@ -286,8 +289,10 @@ window.addEventListener('load', () => {
 
   const songRow = document.querySelectorAll('.song-row');
 
+  // lancement piste au clic dans la playlist
   for (const song of songRow) {
     song.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       trackIndex = song.rowIndex - 1;
       loadTrack();
       playTrack();
@@ -295,6 +300,7 @@ window.addEventListener('load', () => {
   }
 });
 
+// Actualisation de la barre de temps à chaque modif de l'input
 progressBar.addEventListener('change', changeTime);
 
 // control button events
@@ -309,31 +315,31 @@ rdmBtn.addEventListener('click', shuffleTrackAction);
 // affichage playlist
 playlistBtn.addEventListener('click', () => {
   playlistSection.classList.toggle('show-playlist');
+  playlistBtnEffect();
+  playlistScrollEffect();
 });
 
-// Désactivation auto du focus des boutons en version mobile (= touch)
-const btns = document.querySelectorAll('button'); // Selection des boutons
-
-console.log(window.innerWidth);
-
-if (
-  window.innerWidth <= 710 ||
-  (window.innerWidth > window.innerHeight && window.innerWidth <= 920)
-) {
-  btns.forEach((btn) => {
-    let removeFocusTimer;
-    // color: #b83f87;
-
-    const removeFocus = () => {
-      btn.style.color = '#b83f87';
-      btn.style.background = '#000';
-      console.log('ok');
-
-      clearInterval(removeFocusTimer);
-    };
-
-    btn.addEventListener('focus', (e) => {
-      removeFocusTimer = setInterval(removeFocus, 250);
-    });
+// Effets sur le button playlist
+function playlistBtnEffect() {
+  playlistBtnLeft.classList.toggle('active-bar-1');
+  playlistBtnRight.classList.toggle('active-bar-2');
+  playlistBtnHide.forEach((item) => {
+    item.classList.toggle('hide-bar');
   });
+}
+
+// Effets d'ouverture de la playlist
+function playlistScrollEffect() {
+  let scrollToPlaylistDelay;
+
+  let scrollHeight = playlistSection.offsetTop;
+
+  function scrollToPlaylist() {
+    window.scrollTo({ top: scrollHeight, behavior: 'smooth' });
+    clearTimeout(scrollToPlaylistDelay);
+  }
+
+  if (playlistSection.classList.contains('show-playlist')) {
+    scrollToPlaylistDelay = setTimeout(scrollToPlaylist, 25);
+  }
 }
