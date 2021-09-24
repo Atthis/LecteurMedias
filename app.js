@@ -294,7 +294,11 @@ window.addEventListener('load', () => {
   // lancement piste au clic dans la playlist
   for (const song of songRow) {
     song.addEventListener('click', () => {
+      // Remonter en haut de page sur mobile
       window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Suppression de la classe active pour toutes les lignes
+      songRow.forEach((el) => el.classList.remove('row-active'));
 
       // Fermeture de la playlist au clic sur mobile
       if (
@@ -305,6 +309,9 @@ window.addEventListener('load', () => {
         playlistSection.classList.toggle('show-playlist');
         playlistBtnEffect();
       }
+
+      // Ajout de la classe active pour la chanson cliquée
+      song.classList.add('row-active');
 
       trackIndex = song.rowIndex - 1;
       loadTrack();

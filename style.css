@@ -430,6 +430,11 @@ header h1 {
   background-color: #fcc4e5;
 }
 
+.playlist-container .song-row.row-active {
+  color: #fff;
+  background-color: #b83f87;
+}
+
 .playlist-container td {
   padding: 0.5em;
   padding-left: 0.5em;
