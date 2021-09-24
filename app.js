@@ -155,6 +155,7 @@ function repeatTrackAction() {
     noPlaylistRepeat = true;
     repeatBtnIcon.style.color = '#b83f87';
     repeatTxt.innerText = '';
+    repeatBtnIcon.blur();
   } else {
     repeatOn++;
 
@@ -222,6 +223,7 @@ function shuffleTrackAction() {
   } else {
     shuffleOn = true;
     rdmBtnIcon.style.color = '#fff';
+    rdmBtnIcon.blur();
     if (!playing) {
       // trackIndex = Math.floor(Math.random() * songList.length);
       nextTrack();
