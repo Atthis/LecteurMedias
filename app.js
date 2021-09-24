@@ -293,6 +293,17 @@ window.addEventListener('load', () => {
   for (const song of songRow) {
     song.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Fermeture de la playlist au clic sur mobile
+      if (
+        window.matchMedia('(max-width: 710px)').matches ||
+        window.matchMedia('(max-width: 920px) and (orientation: landscape)')
+          .matches
+      ) {
+        playlistSection.classList.toggle('show-playlist');
+        playlistBtnEffect();
+      }
+
       trackIndex = song.rowIndex - 1;
       loadTrack();
       playTrack();
@@ -332,6 +343,7 @@ function playlistBtnEffect() {
 function playlistScrollEffect() {
   let scrollToPlaylistDelay;
 
+  // Récupération de la position du haut de la playlist
   let scrollHeight = playlistSection.offsetTop;
 
   function scrollToPlaylist() {

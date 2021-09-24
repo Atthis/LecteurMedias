@@ -342,7 +342,7 @@ header h1 {
   font-weight: 300;
 }
 
-.option-btn button:hover .fas{
+.option-btn button:hover .fas {
   color: #fff !important;
   cursor: pointer;
 }
@@ -486,7 +486,7 @@ header h1 {
     box-shadow: none;
   }
 
-  .option-btn .fas:hover {
+  .option-btn button:hover .fas {
     color: #b83f87 !important;
     cursor: pointer;
   }
@@ -499,11 +499,11 @@ header h1 {
     transform: rotate(-60deg) translateY(-30%);
   }
 
-  .hide-bar{
+  .hide-bar {
     opacity: 0;
   }
 
-  .controller .fas:hover{
+  .controller .fas:hover {
     color: #fff;
   }
 
@@ -517,7 +517,7 @@ header h1 {
     transition: height 0.5s ease;
     background-color: #b83f87;
   }
-  
+
   .show-playlist {
     padding: 1.5rem;
     height: 450px;
