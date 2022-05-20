@@ -110,8 +110,10 @@ function changeTime() {
   // recuperation du clic de l'utilisateur
   let userTime = (currentTrack.duration * progressBar.value) / 100;
 
+  // if(playing){
   // Definition de la durée en cours
   currentTrack.currentTime = userTime;
+
 }
 
 // Piste precedente et suivante
